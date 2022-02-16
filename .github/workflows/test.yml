@@ -1,11 +1,11 @@
-name: Release
+name: Test
 on:
-  push:
-    branches:
+  pull_request:
+    branches:    
       - main
 jobs:
-  release:
-    name: Release
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,13 +18,8 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         run: yarn install
-      - name: Test 
+      - name: Test
         run: npm run test-ci
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npx semantic-release
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
