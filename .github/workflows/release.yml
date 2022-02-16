@@ -18,8 +18,14 @@ jobs:
           node-version: 'lts/*'
       - name: Install dependencies
         run: yarn install
+      - name: Test 
+        run: npm run test-ci
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npx semantic-release
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
