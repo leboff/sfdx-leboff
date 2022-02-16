@@ -15,12 +15,16 @@
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@oclif/plugin-help": "^3",
+    "@oclif/semantic-release": "^3.1.5",
     "@oclif/test": "^1",
     "@salesforce/dev-config": "^2",
     "@salesforce/dev-scripts": "^0",
     "@salesforce/prettier-config": "^0",
     "@salesforce/ts-sinon": "^1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^9.0.0",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "@types/chai": "^4",
     "@types/jsforce": "^1.9.41",
     "@types/mocha": "^8",
@@ -83,6 +87,7 @@
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "postversion": "oclif-dev readme && git add README.md"
   }
 }
