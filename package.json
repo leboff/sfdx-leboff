@@ -87,6 +87,7 @@
     "posttest": "eslint src/**/*.ts test/**/*.ts",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
     "test": "nyc --extension .ts --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
+    "test-ci": "nyc --extension .ts --reporter=lcov --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md",
     "semantic-release": "semantic-release",
     "postversion": "oclif-dev readme && git add README.md"
