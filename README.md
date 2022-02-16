@@ -20,7 +20,7 @@ $ npm install -g sfdx-leboff
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-leboff/1.0.0 linux-x64 node-v16.13.2
+sfdx-leboff/1.1.0 linux-x64 node-v16.13.2
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -64,5 +64,5 @@ EXAMPLE
   sfdx leboff:flows:deactivate --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.0.0/src/commands/leboff/flows/deactivate.ts)_
+_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.1.0/src/commands/leboff/flows/deactivate.ts)_
 <!-- commandsstop -->
