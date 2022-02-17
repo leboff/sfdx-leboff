@@ -90,6 +90,6 @@
     "test-ci": "nyc --extension .ts --reporter=lcov --require ts-node/register mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md",
     "semantic-release": "semantic-release",
-    "postversion": "oclif-dev readme && git add README.md"
+    "postversion": "oclif-dev readme && git add README.md oclif.manifest.json"
   }
 }
