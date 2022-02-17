@@ -4,7 +4,7 @@ Some commands that were missing
 
 [![Version](https://img.shields.io/npm/v/sfdx-leboff.svg)](https://npmjs.org/package/sfdx-leboff)
 [![GH Actions](https://github.com/leboff/sfdx-leboff/actions/workflows/release.yml/badge.svg)](https://github.com/leboff/sfdx-leboff/actions)
-[![Coverage Status](https://img.shields.io/coveralls/github/leboff/sfdx-leboff/main.svg)](https://coveralls.io/r/leboff/sfdx-leboff?branch=main)
+[![Coverage Status](https://coveralls.io/repos/github/leboff/sfdx-leboff/badge.svg?branch=main)](https://coveralls.io/github/leboff/sfdx-leboff?branch=main)
 [![Known Vulnerabilities](https://snyk.io/test/github/leboff/sfdx-leboff/badge.svg)](https://snyk.io/test/github/leboff/sfdx-leboff)
 [![Downloads/week](https://img.shields.io/npm/dw/sfdx-leboff.svg)](https://npmjs.org/package/sfdx-leboff)
 [![License](https://img.shields.io/npm/l/sfdx-leboff.svg)](https://github.com/leboff/sfdx-leboff/blob/master/package.json)
