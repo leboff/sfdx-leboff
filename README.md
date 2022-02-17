@@ -5,17 +5,18 @@ Some commands that were missing
 [![Version](https://img.shields.io/npm/v/sfdx-leboff.svg)](https://npmjs.org/package/sfdx-leboff)
 [![GH Actions](https://github.com/leboff/sfdx-leboff/actions/workflows/release.yml/badge.svg)](https://github.com/leboff/sfdx-leboff/actions)
 [![Coverage Status](https://img.shields.io/coveralls/github/leboff/sfdx-leboff/main.svg)](https://coveralls.io/r/leboff/sfdx-leboff?branch=main)
-[![Greenkeeper](https://badges.greenkeeper.io/leboff/sfdx-leboff.svg)](https://greenkeeper.io/)
 [![Known Vulnerabilities](https://snyk.io/test/github/leboff/sfdx-leboff/badge.svg)](https://snyk.io/test/github/leboff/sfdx-leboff)
 [![Downloads/week](https://img.shields.io/npm/dw/sfdx-leboff.svg)](https://npmjs.org/package/sfdx-leboff)
 [![License](https://img.shields.io/npm/l/sfdx-leboff.svg)](https://github.com/leboff/sfdx-leboff/blob/master/package.json)
 
 <!-- toc -->
-* [sfdx-leboff](#sfdx-leboff)
+
+- [sfdx-leboff](#sfdx-leboff)
 <!-- tocstop -->
 
 <!-- install -->
 <!-- usage -->
+
 ```sh-session
 $ npm install -g sfdx-leboff
 $ sfdx COMMAND
@@ -27,9 +28,11 @@ USAGE
   $ sfdx COMMAND
 ...
 ```
+
 <!-- usagestop -->
 <!-- commands -->
-* [`sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdeactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+
+- [`sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdeactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
 ## `sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -37,7 +40,7 @@ Deactivate a Flow based on API Name
 
 ```
 USAGE
-  $ sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] 
+  $ sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>]
   [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
@@ -66,4 +69,5 @@ EXAMPLE
 ```
 
 _See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.1.1/src/commands/leboff/flows/deactivate.ts)_
+
 <!-- commandsstop -->
