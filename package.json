@@ -1,7 +1,7 @@
 {
   "name": "sfdx-leboff",
   "description": "Some commands that were missing",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Bryan Leboff",
   "bugs": "https://github.com/leboff/sfdx-leboff/issues",
   "dependencies": {
