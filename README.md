@@ -11,29 +11,25 @@ Some commands that were missing
 [![License](https://img.shields.io/npm/l/sfdx-leboff.svg)](https://github.com/leboff/sfdx-leboff/blob/master/package.json)
 
 <!-- toc -->
-
-- [sfdx-leboff](#sfdx-leboff)
+* [sfdx-leboff](#sfdx-leboff)
 <!-- tocstop -->
 
 <!-- install -->
 <!-- usage -->
-
 ```sh-session
 $ npm install -g sfdx-leboff
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-leboff/1.1.0 linux-x64 node-v16.13.2
+sfdx-leboff/1.1.1 linux-x64 node-v16.14.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
 ...
 ```
-
 <!-- usagestop -->
 <!-- commands -->
-
-- [`sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdeactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdeactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
 ## `sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -41,7 +37,7 @@ Deactivate a Flow based on API Name
 
 ```
 USAGE
-  $ sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>]
+  $ sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] 
   [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
 
 OPTIONS
@@ -69,6 +65,5 @@ EXAMPLE
   sfdx leboff:flows:deactivate --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.1.0/src/commands/leboff/flows/deactivate.ts)_
-
+_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.1.1/src/commands/leboff/flows/deactivate.ts)_
 <!-- commandsstop -->
