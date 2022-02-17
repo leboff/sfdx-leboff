@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/leboff/sfdx-leboff/compare/v1.1.1...v1.1.2) (2022-02-17)
+
+
+### Bug Fixes
+
+* **build:** add oclif manifest postversion ([b11c7c5](https://github.com/leboff/sfdx-leboff/commit/b11c7c5e332c0b0e78ee1ee7ff584a6f677285d8))
+
 ## [1.1.1](https://github.com/leboff/sfdx-leboff/compare/v1.1.0...v1.1.1) (2022-02-17)
 
 
