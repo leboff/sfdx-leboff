@@ -4,10 +4,17 @@
   "flowDeactivated": "already inactive.",
   "errorFlowUpdate": "Unable to deactivate flow %s.",
   "errorFlowNotFound": "Could not find a definition for flow %s in the org.",
-  "inprogress": "Deactivating flow %s",
+  "deactivate.inprogress": "Deactivating flow %s",
   "deactivate.success": "Successfully deactivated",
   "deactivate.commandDescription": "Deactivate a Flow based on API Name",
   "deactivate.examples": [
     "sfdx leboff:flows:deactivate --targetusername myOrg@example.com  --developername My_Flow"
+  ],
+  "delete.inprogress": "Deleting flow %s",
+  "delete.success": "Successfully deleted",
+  "delete.failed": "Failed to delete %s",
+  "delete.commandDescription": "Delete a Flow and all versions based on API Name",
+  "delete.examples": [
+    "sfdx leboff:flows:delete --targetusername myOrg@example.com  --developername My_Flow"
   ]
 }
