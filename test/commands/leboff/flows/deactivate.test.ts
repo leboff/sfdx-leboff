@@ -4,7 +4,7 @@ import { Messages } from '@salesforce/core';
 import { ensureJsonMap, ensureString } from '@salesforce/ts-types';
 
 Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('sfdx-leboff', 'flows.deactivate');
+const messages = Messages.loadMessages('sfdx-leboff', 'flows');
 
 describe('leboff:flows:deactivate', () => {
   const flowTest = test.withOrg({ username: 'test@org.com' }, true).stderr().stdout();

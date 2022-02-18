@@ -6,21 +6,21 @@
  */
 import * as os from 'os';
 import { flags, SfdxCommand } from '@salesforce/command';
-import { Messages, SfdxError } from '@salesforce/core';
+import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { RecordResult } from 'jsforce';
+import { deactivate, getFlowDefinition } from '../../../util/flows';
 
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
 
 // Load the specific messages for this file. Messages from @salesforce/command, @salesforce/core,
 // or any library that is using the messages framework can also be loaded this way.
-const messages = Messages.loadMessages('sfdx-leboff', 'flows.deactivate');
+const messages = Messages.loadMessages('sfdx-leboff', 'flows');
 
 export default class FlowsDeactivate extends SfdxCommand {
-  public static description = messages.getMessage('commandDescription');
+  public static description = messages.getMessage('deactivate.commandDescription');
 
-  public static examples = messages.getMessage('examples').split(os.EOL);
+  public static examples = messages.getMessage('deactivate.examples').split(os.EOL);
 
   public static args = [];
 
@@ -49,58 +49,31 @@ export default class FlowsDeactivate extends SfdxCommand {
       developername: string;
       namespaceprefix: string;
     };
+    const conn = this.org.getConnection();
 
     this.ux.startSpinner(messages.getMessage('inprogress', [developername]));
 
-    const conn = this.org.getConnection();
-
-    let flowDefinitionQuery = `Select Id, ActiveVersionId, DeveloperName, LatestVersionId from FlowDefinition where DeveloperName = '${developername}'`;
-
-    if (namespaceprefix) {
-      flowDefinitionQuery += ` AND NamespacePrefix = '${namespaceprefix}'`;
-    }
-
-    interface FlowDefinition {
-      Id: string;
-      ActiveVersionId: string;
-      DeveloperName: string;
-      LatestVersionId: string;
-    }
-
-    // Query the org
-    const result = await conn.tooling.query<FlowDefinition>(flowDefinitionQuery);
-
-    if (!result.records || result.records.length <= 0) {
-      this.ux.stopSpinner('Error');
-      throw new SfdxError(messages.getMessage('errorFlowNotFound', [developername]));
-    }
-
-    const flowdefinition = result.records[0];
-
-    if (!flowdefinition.ActiveVersionId) {
-      this.ux.stopSpinner(messages.getMessage('flowDeactivated'));
-      return { developername };
-    }
-
-    let flowResult: RecordResult;
     try {
-      flowResult = await conn.tooling.sobject('FlowDefinition').update({
-        Id: flowdefinition.Id,
-        Metadata: {
-          activeVersionNumber: '',
+      const flowdefinition = await getFlowDefinition(
+        {
+          developername,
+          namespaceprefix,
         },
-      });
+        conn
+      );
+
+      if (!flowdefinition.ActiveVersionId) {
+        this.ux.stopSpinner(messages.getMessage('flowDeactivated'));
+        return { developername };
+      }
+
+      await deactivate(flowdefinition, conn);
+      this.ux.stopSpinner(messages.getMessage('deactivate.success'));
+      // Return an object to be displayed with --json
+      return { developername, Id: flowdefinition.ActiveVersionId };
     } catch (ex) {
-      this.ux.error(ex);
-    }
-
-    if (!flowResult || !flowResult.success) {
       this.ux.stopSpinner('Error');
-      throw new SfdxError(messages.getMessage('errorFlowUpdate', [developername]));
+      throw ex;
     }
-
-    this.ux.stopSpinner(messages.getMessage('deactivateSuccess'));
-    // Return an object to be displayed with --json
-    return { developername, Id: flowResult.id };
   }
 }
