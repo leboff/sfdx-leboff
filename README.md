@@ -20,7 +20,7 @@ $ npm install -g sfdx-leboff
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-leboff/1.1.2 linux-x64 node-v16.14.0
+sfdx-leboff/1.2.0 linux-x64 node-v16.14.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -29,6 +29,7 @@ USAGE
 <!-- usagestop -->
 <!-- commands -->
 * [`sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdeactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx leboff:flows:delete [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdelete--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 
 ## `sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -64,5 +65,41 @@ EXAMPLE
   sfdx leboff:flows:deactivate --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.1.2/src/commands/leboff/flows/deactivate.ts)_
+_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.2.0/src/commands/leboff/flows/deactivate.ts)_
+
+## `sfdx leboff:flows:delete [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+
+Delete a Flow and all versions based on API Name
+
+```
+USAGE
+  $ sfdx leboff:flows:delete [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] 
+  [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+
+OPTIONS
+  -n, --developername=developername                                                 The developer name of the flow to
+                                                                                    deactivate
+
+  -p, --namespaceprefix=namespaceprefix                                             Use to specify a specific namespace
+                                                                                    prefix
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  -v, --targetdevhubusername=targetdevhubusername                                   username or alias for the dev hub
+                                                                                    org; overrides default dev hub org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+EXAMPLE
+  sfdx leboff:flows:delete --targetusername myOrg@example.com  --developername My_Flow
+```
+
+_See code: [src/commands/leboff/flows/delete.ts](https://github.com/leboff/sfdx-leboff/blob/v1.2.0/src/commands/leboff/flows/delete.ts)_
 <!-- commandsstop -->

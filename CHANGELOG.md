@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/leboff/sfdx-leboff/compare/v1.1.2...v1.2.0) (2022-02-18)
+
+
+### Bug Fixes
+
+* **build:** fix build / test on new commands ([d2451c3](https://github.com/leboff/sfdx-leboff/commit/d2451c3aa270a5d46870cee8fc53f06bf7d97e3b))
+
+
+### Features
+
+* **flows-delete:** add flow delete ([2575a39](https://github.com/leboff/sfdx-leboff/commit/2575a3960ec77c04b4d142a8c2f36a035abf7d00))
+
 ## [1.1.2](https://github.com/leboff/sfdx-leboff/compare/v1.1.1...v1.1.2) (2022-02-17)
 
 
