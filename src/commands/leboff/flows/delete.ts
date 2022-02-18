@@ -8,7 +8,12 @@ import * as os from 'os';
 import { flags, SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { deactivate, getFlowDefinition } from '../../../util/flows';
+import {
+  deactivate,
+  deleteFlows,
+  getFlowDefinition,
+  getFlowsByDefinition,
+} from '../../../util/flows';
 
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
@@ -17,10 +22,10 @@ Messages.importMessagesDirectory(__dirname);
 // or any library that is using the messages framework can also be loaded this way.
 const messages = Messages.loadMessages('sfdx-leboff', 'flows');
 
-export default class FlowsDeactivate extends SfdxCommand {
-  public static description = messages.getMessage('deactivate.commandDescription');
+export default class FlowsDelete extends SfdxCommand {
+  public static description = messages.getMessage('delete.commandDescription');
 
-  public static examples = messages.getMessage('deactivate.examples').split(os.EOL);
+  public static examples = messages.getMessage('delete.examples').split(os.EOL);
 
   public static args = [];
 
@@ -51,7 +56,7 @@ export default class FlowsDeactivate extends SfdxCommand {
     };
     const conn = this.org.getConnection();
 
-    this.ux.startSpinner(messages.getMessage('deactivate.inprogress', [developername]));
+    this.ux.startSpinner(messages.getMessage('delete.inprogress', [developername]));
 
     try {
       const flowdefinition = await getFlowDefinition(
@@ -62,15 +67,21 @@ export default class FlowsDeactivate extends SfdxCommand {
         conn
       );
 
-      if (!flowdefinition.ActiveVersionId) {
-        this.ux.stopSpinner(messages.getMessage('flowDeactivated'));
-      } else {
+      if (flowdefinition.ActiveVersionId) {
         await deactivate(flowdefinition, conn);
-        this.ux.stopSpinner(messages.getMessage('deactivate.success'));
+        this.ux.setSpinnerStatus(messages.getMessage('deactivate.success'));
       }
+      this.ux.setSpinnerStatus(messages.getMessage('delete.inprogress'));
 
+      const flows = await getFlowsByDefinition(flowdefinition, conn);
+
+      this.ux.logJson(flows);
+
+      if (flows && flows.length > 0) {
+        await deleteFlows(flows, conn);
+      }
       // Return an object to be displayed with --json
-      return JSON.parse(JSON.stringify(flowdefinition)) as AnyJson;
+      return JSON.parse(JSON.stringify(flows)) as AnyJson;
     } catch (ex) {
       this.ux.stopSpinner('Error');
       throw ex;
