@@ -1,125 +1,134 @@
 /* eslint-disable prettier/prettier */
 import { expect, test } from '@salesforce/command/lib/test';
-import { Messages } from '@salesforce/core';
 import { ensureJsonMap } from '@salesforce/ts-types';
 import {
-  PatchFlowDefinition,
-  PatchFlowDefinitionFail,
-  QueryFlowDefinition,
-  QueryFlowDefinitionNotFound,
   requestHelper,
+  QueryFlowDefinition,
+  QueryFlow,
+  QueryFlowEmpty,
+  PatchFlowDefinition,
+  DeleteFlow,
   QueryFlowDefinitionInactive,
+  DeleteFlowError,
 } from '../../../util';
 
-Messages.importMessagesDirectory(__dirname);
-const messages = Messages.loadMessages('sfdx-leboff', 'flows');
-
-describe('leboff:flows:deactivate', () => {
+describe('leboff:flows:delete', () => {
   const flowTest = test.withOrg({ username: 'test@org.com' }, true).stderr().stdout();
 
   flowTest
     .withConnectionRequest((request) => {
       const requestMap = ensureJsonMap(request);
       const result = requestHelper(
-        [new QueryFlowDefinition(), new PatchFlowDefinition()],
+        [new QueryFlowDefinition(), new QueryFlow(), new PatchFlowDefinition(), new DeleteFlow()],
         requestMap
       );
+
       if (result) return result;
 
       return Promise.reject();
     })
     .command([
-      'leboff:flows:deactivate',
-      '--targetusername',
-      'test@org.com',
-      '--developername',
-      'Test_Flow',
-    ])
-    .it('deactivates Test_Flow', (ctx) => {
-      expect(ctx.stdout).to.equal('');
-    });
-
-  flowTest
-    .withConnectionRequest((request) => {
-      const requestMap = ensureJsonMap(request);
-      const result = requestHelper(
-        [new QueryFlowDefinitionNotFound(), new PatchFlowDefinition()],
-        requestMap
-      );
-      if (result) return result;
-
-      return Promise.reject();
-    })
-    .command([
-      'leboff:flows:deactivate',
+      'leboff:flows:delete',
       '--targetusername',
       'test@org.com',
       '--developername',
       'Test_Flow',
       '--namespaceprefix',
       'test',
+      '--json',
     ])
-    .it('fails if Test_Flow is not found', (ctx) => {
-      expect(ctx.stderr).to.contain(messages.getMessage('errorFlowNotFound', ['Test_Flow']));
-    });
-
-  flowTest
-    .withConnectionRequest((request) => {
-      const requestMap = ensureJsonMap(request);
-      const result = requestHelper([new QueryFlowDefinitionInactive()], requestMap);
-      if (result) return result;
-
-      return Promise.reject();
-    })
-    .command([
-      'leboff:flows:deactivate',
-      '--targetusername',
-      'test@org.com',
-      '--developername',
-      'Test_Flow',
-    ])
-    .it('succeeds if already deactivated', (ctx) => {
-      expect(ctx.stdout).to.equal('');
-    });
-
-  flowTest
-    .withConnectionRequest((request) => {
-      const requestMap = ensureJsonMap(request);
-      const result = requestHelper([new QueryFlowDefinition()], requestMap);
-      if (result) return result;
-
-      return Promise.reject();
-    })
-    .command([
-      'leboff:flows:deactivate',
-      '--targetusername',
-      'test@org.com',
-      '--developername',
-      'Test_Flow',
-    ])
-    .it('errors if update fails', (ctx) => {
-      expect(ctx.stderr).to.contain('Error');
+    .it('deletes an active Test_Flow', (ctx) => {
+      expect(ctx.stdout).to.contain('"Id": "123"');
+      expect(ctx.stdout).to.contain('"Id": "456"');
     });
 
   flowTest
     .withConnectionRequest((request) => {
       const requestMap = ensureJsonMap(request);
       const result = requestHelper(
-        [new QueryFlowDefinition(), new PatchFlowDefinitionFail()],
+        [
+          new QueryFlowDefinition(),
+          new QueryFlowEmpty(),
+          new PatchFlowDefinition(),
+          new DeleteFlow(),
+        ],
         requestMap
       );
+
       if (result) return result;
 
       return Promise.reject();
     })
     .command([
-      'leboff:flows:deactivate',
+      'leboff:flows:delete',
       '--targetusername',
       'test@org.com',
       '--developername',
       'Test_Flow',
+      '--namespaceprefix',
+      'test',
+      '--json',
     ])
-    .it('errors if update fails', (ctx) => {
-      expect(ctx.stderr).to.contain('Error');
+    .it('fails if flow not found', (ctx) => {
+      expect(ctx.stdout).to.contain('Error');
+    });
+
+  flowTest
+    .withConnectionRequest((request) => {
+      const requestMap = ensureJsonMap(request);
+      const result = requestHelper(
+        [
+          new QueryFlowDefinitionInactive(),
+          new QueryFlow(),
+          new PatchFlowDefinition(),
+          new DeleteFlow(),
+        ],
+        requestMap
+      );
+
+      if (result) return result;
+
+      return Promise.reject();
+    })
+    .command([
+      'leboff:flows:delete',
+      '--targetusername',
+      'test@org.com',
+      '--developername',
+      'Test_Flow',
+      '--json',
+    ])
+    .it('deletes an inactive Test_Flow', (ctx) => {
+      expect(ctx.stdout).to.contain('"Id": "123"');
+      expect(ctx.stdout).to.contain('"Id": "456"');
+    });
+
+  flowTest
+    .withConnectionRequest((request) => {
+      const requestMap = ensureJsonMap(request);
+      const result = requestHelper(
+        [
+          new QueryFlowDefinition(),
+          new QueryFlow(),
+          new PatchFlowDefinition(),
+          new DeleteFlowError(),
+        ],
+        requestMap
+      );
+
+      if (result) return result;
+
+      return Promise.reject();
+    })
+    .command([
+      'leboff:flows:delete',
+      '--targetusername',
+      'test@org.com',
+      '--developername',
+      'Test_Flow',
+      '--json',
+    ])
+    .it('Handles errors on delete', (ctx) => {
+      expect(ctx.stdout).to.contain('Error');
     });
 });
