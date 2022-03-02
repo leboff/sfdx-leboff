@@ -17,6 +17,101 @@ export function requestHelper(
   return ret;
 }
 
+export class QueryReport implements RequestHandler {
+  public handle(requestMap: JsonMap): Promise<AnyJson> | void {
+    if (/FROM%20Report/.exec(ensureString(requestMap.url))) {
+      if (requestMap.method === 'GET') {
+        return Promise.resolve({
+          records: [
+            {
+              Id: '123',
+              DeveloperName: 'Test_Report',
+              FolderName: 'Test_Folder_Src',
+              NamespacePrefix: null,
+            },
+          ],
+        });
+      }
+    }
+  }
+}
+
+export class QueryFolder implements RequestHandler {
+  public handle(requestMap: JsonMap): Promise<AnyJson> | void {
+    if (/FROM%20Folder/.exec(ensureString(requestMap.url))) {
+      if (requestMap.method === 'GET') {
+        return Promise.resolve({
+          records: [
+            {
+              Id: '456',
+              DeveloperName: 'Test_Folder_Tgt',
+              NamespacePrefix: null,
+            },
+          ],
+        });
+      }
+    }
+  }
+}
+
+export class QueryReportNotFound implements RequestHandler {
+  public handle(requestMap: JsonMap): Promise<AnyJson> | void {
+    if (/asdfasdf/.exec(ensureString(requestMap.url))) {
+      if (requestMap.method === 'GET') {
+        return Promise.resolve({
+          records: [],
+        });
+      }
+    }
+  }
+}
+
+export class DescribeReport implements RequestHandler {
+  public handle(requestMap: JsonMap): Promise<AnyJson> | void {
+    if (/describe/.exec(ensureString(requestMap.url))) {
+      if (requestMap.method === 'GET') {
+        return Promise.resolve({
+          reportMetadata: {
+            id: '123',
+            folderId: '789',
+          },
+        });
+      }
+    }
+  }
+}
+
+export class DescribeReportWithBuckets implements RequestHandler {
+  public handle(requestMap: JsonMap): Promise<AnyJson> | void {
+    if (/describe/.exec(ensureString(requestMap.url))) {
+      if (requestMap.method === 'GET') {
+        return Promise.resolve({
+          reportMetadata: {
+            id: '123',
+            folderId: '789',
+            buckets: [
+              {
+                name: 'test',
+              },
+            ],
+          },
+        });
+      }
+    }
+  }
+}
+export class PatchReport implements RequestHandler {
+  public handle(requestMap: JsonMap): Promise<AnyJson> | void {
+    if (/analytics\/reports/.exec(ensureString(requestMap.url))) {
+      if (requestMap.method === 'PATCH') {
+        return Promise.resolve({
+          reportMetadata: {},
+        });
+      }
+    }
+  }
+}
+
 export class QueryFlowDefinition implements RequestHandler {
   public handle(requestMap: JsonMap): Promise<AnyJson> | void {
     if (/from%20FlowDefinition/.exec(ensureString(requestMap.url))) {

@@ -6,9 +6,9 @@
  */
 
 module.exports = {
-  extends: [
-    'eslint-config-salesforce-typescript',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['eslint-config-salesforce-typescript', 'plugin:prettier/recommended'],
   parser: '@typescript-eslint/parser',
+  rules: {
+    'no-underscore-dangle': ['error', { allow: ['_baseUrl'] }],
+  },
 };
