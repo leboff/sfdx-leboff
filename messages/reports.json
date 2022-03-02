@@ -1,0 +1,17 @@
+{
+  "developernameFlagDescription": "The developer name of the report to move",
+  "foldernameFlagDescription": "The developer name of the folder to move the reports to",
+  "whereclauseFlagDescription": "Where clause used to find reports to move",
+  "move.inprogress": "Moving reports",
+  "move.moving": "Moving %d reports to folder %s",
+  "move.success": "Successfully moved",
+  "move.commandDescription": "Move reports from one folder to another",
+  "move.examples": [
+    "sfdx leboff:reports:move --targetusername myOrg@example.com  --developername My_Report --foldername NewFolder",
+    "sfdx leboff:reports:move --targetusername myOrg@example.com  --whereclause \"namepsaceprefix='myns'\" --foldername NewFolder"
+  ],
+  "errorReportNotFound": "Did not find a report matching %s",
+  "errorFolderNotFound": "Did not find a report folder with developername %s",
+  "errorMissingOption": "The developer name or where clause must be specified",
+  "errorTooManyOption": "You must specify either a developername OR a where clause to retrieve reports to move."
+}
