@@ -20,7 +20,7 @@ $ npm install -g sfdx-leboff
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-leboff/1.2.0 linux-x64 node-v16.14.0
+sfdx-leboff/1.3.0 linux-x64 node-v16.14.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -28,8 +28,53 @@ USAGE
 ```
 <!-- usagestop -->
 <!-- commands -->
+* [`sfdx leboff:dashboards:runninguser -n <string> -t <string> [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffdashboardsrunninguser--n-string--t-string--c-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdeactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx leboff:flows:delete [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdelete--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+* [`sfdx leboff:reports:move -f <string> [-n <string>] [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffreportsmove--f-string--n-string--c-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+
+## `sfdx leboff:dashboards:runninguser -n <string> -t <string> [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+
+Modify the dashboard running user or view as option
+
+```
+USAGE
+  $ sfdx leboff:dashboards:runninguser -n <string> -t <string> [-c <string>] [-v <string>] [-u <string>] [--apiversion 
+  <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+
+OPTIONS
+  -c, --userwhereclause=userwhereclause                                             Where clause used to find the
+                                                                                    running user. Required if type is
+                                                                                    SpecifiedUser
+
+  -n, --developername=developername                                                 (required) The developer name of the
+                                                                                    dashboard to modify
+
+  -t, --dashboardtype=dashboardtype                                                 (required) The Dashboard running
+                                                                                    user type. Acceptable values are
+                                                                                    LoggedInUser, SpecifiedUser, and
+                                                                                    MyTeamUser
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  -v, --targetdevhubusername=targetdevhubusername                                   username or alias for the dev hub
+                                                                                    org; overrides default dev hub org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+EXAMPLE
+  sfdx leboff:dashboards:runninguser --targetusername myOrg@example.com  --developername My_Dashboard --userwhereclause 
+  "email='test@example.com'"
+```
+
+_See code: [src/commands/leboff/dashboards/runninguser.ts](https://github.com/leboff/sfdx-leboff/blob/v1.3.0/src/commands/leboff/dashboards/runninguser.ts)_
 
 ## `sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -65,7 +110,7 @@ EXAMPLE
   sfdx leboff:flows:deactivate --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.2.0/src/commands/leboff/flows/deactivate.ts)_
+_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.3.0/src/commands/leboff/flows/deactivate.ts)_
 
 ## `sfdx leboff:flows:delete [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -101,5 +146,46 @@ EXAMPLE
   sfdx leboff:flows:delete --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/delete.ts](https://github.com/leboff/sfdx-leboff/blob/v1.2.0/src/commands/leboff/flows/delete.ts)_
+_See code: [src/commands/leboff/flows/delete.ts](https://github.com/leboff/sfdx-leboff/blob/v1.3.0/src/commands/leboff/flows/delete.ts)_
+
+## `sfdx leboff:reports:move -f <string> [-n <string>] [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+
+Move reports from one folder to another
+
+```
+USAGE
+  $ sfdx leboff:reports:move -f <string> [-n <string>] [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>]
+   [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+
+OPTIONS
+  -c, --whereclause=whereclause                                                     Where clause used to find reports to
+                                                                                    move
+
+  -f, --foldername=foldername                                                       (required) The developer name of the
+                                                                                    folder to move the reports to
+
+  -n, --developername=developername                                                 The developer name of the report to
+                                                                                    move
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  -v, --targetdevhubusername=targetdevhubusername                                   username or alias for the dev hub
+                                                                                    org; overrides default dev hub org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+EXAMPLES
+  sfdx leboff:reports:move --targetusername myOrg@example.com  --developername My_Report --foldername NewFolder
+  sfdx leboff:reports:move --targetusername myOrg@example.com  --whereclause "namepsaceprefix='myns'" --foldername 
+  NewFolder
+```
+
+_See code: [src/commands/leboff/reports/move.ts](https://github.com/leboff/sfdx-leboff/blob/v1.3.0/src/commands/leboff/reports/move.ts)_
 <!-- commandsstop -->

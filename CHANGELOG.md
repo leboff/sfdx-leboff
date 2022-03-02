@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/leboff/sfdx-leboff/compare/v1.2.0...v1.3.0) (2022-03-02)
+
+
+### Features
+
+* **dashboards:** dashboards:runninguser ([e734412](https://github.com/leboff/sfdx-leboff/commit/e73441223077ccc45a3240341c49891b3616d00b))
+* **report:** add tests for report move ([fac3262](https://github.com/leboff/sfdx-leboff/commit/fac326223066b0810edb2350473232e370f28cce))
+* **reports:** add move command ([9d81c10](https://github.com/leboff/sfdx-leboff/commit/9d81c103433492847968cec48cf9424d32dfab19))
+
 # [1.2.0](https://github.com/leboff/sfdx-leboff/compare/v1.1.2...v1.2.0) (2022-02-18)
 
 
