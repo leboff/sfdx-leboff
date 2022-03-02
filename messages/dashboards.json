@@ -1,0 +1,15 @@
+{
+  "developernameFlagDescription": "The developer name of the dashboard to modify",
+  "dashboardtypeFlagDescription": "The Dashboard running user type. Acceptable values are LoggedInUser, SpecifiedUser, and MyTeamUser",
+  "userwhereclauseFlagDescription": "Where clause used to find the running user. Required if type is SpecifiedUser",
+  "runninguser.inprogress": "Updating dashboard %s",
+  "runninguser.success": "Successfully updated",
+  "runninguser.commandDescription": "Modify the dashboard running user or view as option",
+  "runninguser.examples": [
+    "sfdx leboff:dashboards:runninguser --targetusername myOrg@example.com  --developername My_Dashboard --userwhereclause \"email='test@example.com'\""
+  ],
+  "errorDashboardNotFound": "Did not find a dashboard with developername %s",
+  "errorUserNotFound": "Did not find a user matching %s",
+  "errorBadDashboardType": "Invalid dashboard type %s specified. Valid types are:  LoggedInUser, SpecifiedUser, and MyTeamUser ",
+  "errorWhereClause": "The option userwhereclause is required when type is SpecifiedUser"
+}
