@@ -1,0 +1,13 @@
+{
+  "sourcefolderFlagDescription": "The developername of the folder to copy sharing from",
+  "targetfolderFlagDescription": "The developername folder to copy sharing to",
+  "sourcenamespaceFlagDescription": "The namespace of the folder to copy sharing from",
+  "targetnamespaceFlagDescription": "The namespace folder to copy sharing to",
+  "copysharing.inprogress": "Copying sharing from %s to %s",
+  "copysharing.success": "Successfully copied.",
+  "copysharing.commandDescription": "Copy sharing from one folder to another",
+  "copysharing.examples": [
+    "sfdx leboff:folders:copysharing --targetusername myOrg@example.com  --sourcefolder CompanyDashboards --targetfolder OtherDashboards"
+  ],
+  "errorFolderNotFound": "Did not find a folder with developername %s or %s"
+}

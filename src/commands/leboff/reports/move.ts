@@ -7,8 +7,9 @@
 import * as os from 'os';
 import { flags, SfdxCommand } from '@salesforce/command';
 import { Messages, SfdxError } from '@salesforce/core';
-import { AnyJson, JsonMap, JsonCollection } from '@salesforce/ts-types';
+import { AnyJson } from '@salesforce/ts-types';
 import * as pLimit from 'p-limit';
+import AnalyticsApi from '../../../util/analytics';
 
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
@@ -71,18 +72,6 @@ export default class ReportsMove extends SfdxCommand {
       foldername: string;
     };
 
-    const updateReport = function (id: string, data: JsonMap): Promise<JsonCollection> {
-      const url = [conn._baseUrl(), 'analytics', 'reports', id].join('/');
-      const params = {
-        method: 'PATCH',
-        url,
-        body: JSON.stringify(data),
-      };
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return conn.request(params);
-    };
-
     /**
      * Validate Options
      */
@@ -95,7 +84,7 @@ export default class ReportsMove extends SfdxCommand {
     }
 
     const conn = this.org.getConnection();
-
+    const api = new AnalyticsApi(conn);
     /**
      * Get Folder
      */
@@ -152,7 +141,7 @@ export default class ReportsMove extends SfdxCommand {
         if (reportDescribe.buckets) {
           reportMetadata.buckets = reportDescribe.buckets;
         }
-        return updateReport(report.Id, {
+        return api.updateReport(report.Id, {
           reportMetadata,
         });
       });
