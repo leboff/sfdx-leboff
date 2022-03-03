@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/leboff/sfdx-leboff/compare/v1.3.0...v1.4.0) (2022-03-03)
+
+
+### Features
+
+* **folders:** add folder share copying ([520235a](https://github.com/leboff/sfdx-leboff/commit/520235a81e709c29adb2c8ee926330000fc74a81))
+
 # [1.3.0](https://github.com/leboff/sfdx-leboff/compare/v1.2.0...v1.3.0) (2022-03-02)
 
 
