@@ -7,7 +7,8 @@
 import * as os from 'os';
 import { flags, SfdxCommand } from '@salesforce/command';
 import { Messages, SfdxError } from '@salesforce/core';
-import { AnyJson, JsonCollection } from '@salesforce/ts-types';
+import { AnyJson } from '@salesforce/ts-types';
+import AnalyticsApi from '../../../util/analytics';
 
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
@@ -68,18 +69,6 @@ export default class DashboardsRunningUser extends SfdxCommand {
   protected static VALID_TYPES = ['SpecifiedUser', 'LoggedInUser', 'MyTeamUser'];
 
   public async run(): Promise<AnyJson> {
-    const updateDashboard = function (id: string, data: AnyJson): Promise<JsonCollection> {
-      const url = [conn._baseUrl(), 'analytics', 'dashboards', id].join('/');
-      const params = {
-        method: 'PATCH',
-        url,
-        body: JSON.stringify(data),
-      };
-
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-      return conn.request(params);
-    };
-
     const { developername, userwhereclause, dashboardtype } = this.flags as {
       developername: string;
       userwhereclause: string;
@@ -95,6 +84,8 @@ export default class DashboardsRunningUser extends SfdxCommand {
     }
 
     const conn = this.org.getConnection();
+
+    const api = new AnalyticsApi(conn);
 
     this.ux.startSpinner(messages.getMessage('runninguser.inprogress', [developername]));
 
@@ -122,7 +113,7 @@ export default class DashboardsRunningUser extends SfdxCommand {
     }
     try {
       // Return an object to be displayed with --json
-      const res = await updateDashboard(dashboard.Id, dashboardMetadata);
+      const res = await api.updateDashboard(dashboard.Id, dashboardMetadata);
       return JSON.parse(JSON.stringify(res)) as AnyJson;
     } catch (ex) {
       this.ux.stopSpinner('Error');
