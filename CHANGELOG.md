@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/leboff/sfdx-leboff/compare/v1.4.0...v1.4.1) (2022-03-15)
+
+
+### Bug Fixes
+
+* **reports:** metadata buckets mapping ([e79ed0b](https://github.com/leboff/sfdx-leboff/commit/e79ed0b169e1fa4932417de84d3e712520ac3347))
+
 # [1.4.0](https://github.com/leboff/sfdx-leboff/compare/v1.3.0...v1.4.0) (2022-03-03)
 
 

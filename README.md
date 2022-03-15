@@ -20,7 +20,7 @@ $ npm install -g sfdx-leboff
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-leboff/1.4.0 linux-x64 node-v16.14.0
+sfdx-leboff/1.4.1 linux-x64 node-v16.14.0
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -75,7 +75,7 @@ EXAMPLE
   "email='test@example.com'"
 ```
 
-_See code: [src/commands/leboff/dashboards/runninguser.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.0/src/commands/leboff/dashboards/runninguser.ts)_
+_See code: [src/commands/leboff/dashboards/runninguser.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.1/src/commands/leboff/dashboards/runninguser.ts)_
 
 ## `sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -111,7 +111,7 @@ EXAMPLE
   sfdx leboff:flows:deactivate --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.0/src/commands/leboff/flows/deactivate.ts)_
+_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.1/src/commands/leboff/flows/deactivate.ts)_
 
 ## `sfdx leboff:flows:delete [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -147,7 +147,7 @@ EXAMPLE
   sfdx leboff:flows:delete --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/delete.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.0/src/commands/leboff/flows/delete.ts)_
+_See code: [src/commands/leboff/flows/delete.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.1/src/commands/leboff/flows/delete.ts)_
 
 ## `sfdx leboff:folders:copysharing -s <string> -t <string> [-n <string>] [-e <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -190,7 +190,7 @@ EXAMPLE
   OtherDashboards
 ```
 
-_See code: [src/commands/leboff/folders/copysharing.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.0/src/commands/leboff/folders/copysharing.ts)_
+_See code: [src/commands/leboff/folders/copysharing.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.1/src/commands/leboff/folders/copysharing.ts)_
 
 ## `sfdx leboff:reports:move -f <string> [-n <string>] [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -231,5 +231,5 @@ EXAMPLES
   NewFolder
 ```
 
-_See code: [src/commands/leboff/reports/move.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.0/src/commands/leboff/reports/move.ts)_
+_See code: [src/commands/leboff/reports/move.ts](https://github.com/leboff/sfdx-leboff/blob/v1.4.1/src/commands/leboff/reports/move.ts)_
 <!-- commandsstop -->
