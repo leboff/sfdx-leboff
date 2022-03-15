@@ -137,9 +137,8 @@ export default class ReportsMove extends SfdxCommand {
         const reportMetadata: ReportMetadata = {
           folderId: folder.Id,
         };
-
-        if (reportDescribe.buckets) {
-          reportMetadata.buckets = reportDescribe.buckets;
+        if (reportDescribe.reportMetadata && reportDescribe.reportMetadata['buckets']) {
+          reportMetadata.buckets = reportDescribe.reportMetadata['buckets'] as AnyJson;
         }
         return api.updateReport(report.Id, {
           reportMetadata,
