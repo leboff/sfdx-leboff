@@ -7,14 +7,19 @@ export interface FlowOptions {
   namespaceprefix: string;
 }
 
+export interface Flow extends SalesforceRecord {
+  VersionNumber: number;
+  FullName: string;
+  MasterLabel: string;
+}
 export interface FlowDefinition extends SalesforceRecord {
+  ActiveVersion: Flow;
   ActiveVersionId: string;
   DeveloperName: string;
+  LatestVersion: Flow;
   LatestVersionId: string;
   NamespacePrefix?: string;
 }
-
-export type Flow = SalesforceRecord;
 
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
@@ -29,7 +34,7 @@ export async function getFlowDefinition(
 ): Promise<FlowDefinition> {
   const { developername, namespaceprefix } = opts;
 
-  let flowDefinitionQuery = `Select Id, ActiveVersionId, DeveloperName, NamespacePrefix, LatestVersionId from FlowDefinition where DeveloperName = '${developername}'`;
+  let flowDefinitionQuery = `Select Id, ActiveVersionId, DeveloperName, NamespacePrefix, LatestVersionId, LatestVersion.VersionNumber from FlowDefinition where DeveloperName = '${developername}'`;
 
   if (namespaceprefix) {
     flowDefinitionQuery += ` AND NamespacePrefix = '${namespaceprefix}'`;
@@ -48,7 +53,7 @@ export async function getFlowsByDefinition(
   flowdefinition: FlowDefinition,
   conn: Connection
 ): Promise<Flow[]> {
-  let flowQuery = `Select Id from Flow where DefinitionId = '${flowdefinition.Id}'`;
+  let flowQuery = `Select Id, VersionNumber, FullName, MasterLabel from Flow where DefinitionId = '${flowdefinition.Id}'`;
   if (flowdefinition.NamespacePrefix) {
     flowQuery += ` AND Definition.NamespacePrefix = '${flowdefinition.NamespacePrefix}'`;
   }
@@ -82,6 +87,20 @@ export async function deactivate(flow: FlowDefinition, conn: Connection): Promis
     Id: flow.Id,
     Metadata: {
       activeVersionNumber: '',
+    },
+  });
+
+  if (!flowResult || !flowResult.success) {
+    throw new SfdxError(messages.getMessage('errorFlowUpdate', [flow.DeveloperName]));
+  }
+  return flowResult;
+}
+
+export async function activate(flow: FlowDefinition, conn: Connection): Promise<RecordResult> {
+  const flowResult = await conn.tooling.sobject('FlowDefinition').update({
+    Id: flow.Id,
+    Metadata: {
+      activeVersionNumber: flow.LatestVersion.VersionNumber,
     },
   });
 
