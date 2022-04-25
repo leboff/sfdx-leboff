@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/leboff/sfdx-leboff/compare/v1.4.1...v1.5.0) (2022-04-25)
+
+
+### Features
+
+* **flows-activate:** added function to activate flows ([3b0d074](https://github.com/leboff/sfdx-leboff/commit/3b0d074c7a86ce9737aa299cf6bbebe6a11bac3c))
+
 ## [1.4.1](https://github.com/leboff/sfdx-leboff/compare/v1.4.0...v1.4.1) (2022-03-15)
 
 
