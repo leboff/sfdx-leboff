@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import { expect, test } from '@salesforce/command/lib/test';
-import * as Metadata from '../../../../../node_modules/jsforce/lib/api/Metadata';
+import * as Metadata from 'jsforce/lib/api/Metadata';
 
 describe('leboff:settings:case:enableemailtocase', () => {
   const caseSettingsTest = test
