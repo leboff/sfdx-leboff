@@ -1,3 +1,16 @@
+# [1.6.0](https://github.com/leboff/sfdx-leboff/compare/v1.5.0...v1.6.0) (2022-05-26)
+
+
+### Bug Fixes
+
+* **test:** fix jsforce reference ([ceaa3fa](https://github.com/leboff/sfdx-leboff/commit/ceaa3fa81469f9eb9b67baaebddda1912fe371e3))
+* **test:** lowercase bozo ([1f619a5](https://github.com/leboff/sfdx-leboff/commit/1f619a5eb6cba76e624b2d0f69af01a1184aa62c))
+
+
+### Features
+
+* **settings:** add setting to enable email to case ([3f6a92c](https://github.com/leboff/sfdx-leboff/commit/3f6a92ccdfc5f38bafda65807c387b4f81b2d84f))
+
 # [1.5.0](https://github.com/leboff/sfdx-leboff/compare/v1.4.1...v1.5.0) (2022-04-25)
 
 
