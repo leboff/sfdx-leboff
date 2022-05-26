@@ -1,0 +1,11 @@
+{
+    "case.enableemailtocase.inprogress": "Enabling Email to Case",
+    "case.enableemailtocase.start": "Updating Case settings",
+    "case.enableemailtocase.success": "Successfully enabled",
+    "case.enableemailtocase.commandDescription": "Enable email to case",
+    "case.enableemailtocase.examples": [
+      "sfdx leboff:settings:case:enableemailtocase --targetusername myOrg@example.com "
+    ],
+    "case.enableemailtocase.error": "Failed to enable email to case"
+  }
+  
