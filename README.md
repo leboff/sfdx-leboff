@@ -20,7 +20,7 @@ $ npm install -g sfdx-leboff
 $ sfdx COMMAND
 running command...
 $ sfdx (-v|--version|version)
-sfdx-leboff/1.6.0 linux-x64 node-v16.15.0
+sfdx-leboff/1.7.0 linux-x64 node-v16.17.1
 $ sfdx --help [COMMAND]
 USAGE
   $ sfdx COMMAND
@@ -28,6 +28,7 @@ USAGE
 ```
 <!-- usagestop -->
 <!-- commands -->
+* [`sfdx leboff:customfields:fieldhistory -c <string> -e [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffcustomfieldsfieldhistory--c-string--e--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx leboff:dashboards:runninguser -n <string> -t <string> [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffdashboardsrunninguser--n-string--t-string--c-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx leboff:flows:activate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffflowsdeactivate--n-string--p-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
@@ -35,6 +36,42 @@ USAGE
 * [`sfdx leboff:folders:copysharing -s <string> -t <string> [-n <string>] [-e <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-lebofffolderscopysharing--s-string--t-string--n-string--e-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx leboff:reports:move -f <string> [-n <string>] [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffreportsmove--f-string--n-string--c-string--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
 * [`sfdx leboff:settings:case:enableemailtocase [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`](#sfdx-leboffsettingscaseenableemailtocase--v-string--u-string---apiversion-string---json---loglevel-tracedebuginfowarnerrorfataltracedebuginfowarnerrorfatal)
+
+## `sfdx leboff:customfields:fieldhistory -c <string> -e [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
+
+Enable field history on custom field
+
+```
+USAGE
+  $ sfdx leboff:customfields:fieldhistory -c <string> -e [-v <string>] [-u <string>] [--apiversion <string>] [--json] 
+  [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]
+
+OPTIONS
+  -c, --customfields=customfields                                                   (required) Comma separated list of
+                                                                                    custom fields to enable field
+                                                                                    history
+
+  -e, --enable                                                                      (required) Enable field history
+
+  -u, --targetusername=targetusername                                               username or alias for the target
+                                                                                    org; overrides default target org
+
+  -v, --targetdevhubusername=targetdevhubusername                                   username or alias for the dev hub
+                                                                                    org; overrides default dev hub org
+
+  --apiversion=apiversion                                                           override the api version used for
+                                                                                    api requests made by this command
+
+  --json                                                                            format output as json
+
+  --loglevel=(trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL)  [default: warn] logging level for
+                                                                                    this command invocation
+
+EXAMPLE
+  sfdx leboff:customfields:fieldHistory --field Account.Test__c --targetusername myOrg@example.com
+```
+
+_See code: [src/commands/leboff/customfields/fieldhistory.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/customfields/fieldhistory.ts)_
 
 ## `sfdx leboff:dashboards:runninguser -n <string> -t <string> [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -77,7 +114,7 @@ EXAMPLE
   "email='test@example.com'"
 ```
 
-_See code: [src/commands/leboff/dashboards/runninguser.ts](https://github.com/leboff/sfdx-leboff/blob/v1.6.0/src/commands/leboff/dashboards/runninguser.ts)_
+_See code: [src/commands/leboff/dashboards/runninguser.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/dashboards/runninguser.ts)_
 
 ## `sfdx leboff:flows:activate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -113,7 +150,7 @@ EXAMPLE
   sfdx leboff:flows:activate --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/activate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.6.0/src/commands/leboff/flows/activate.ts)_
+_See code: [src/commands/leboff/flows/activate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/flows/activate.ts)_
 
 ## `sfdx leboff:flows:deactivate [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -149,7 +186,7 @@ EXAMPLE
   sfdx leboff:flows:deactivate --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.6.0/src/commands/leboff/flows/deactivate.ts)_
+_See code: [src/commands/leboff/flows/deactivate.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/flows/deactivate.ts)_
 
 ## `sfdx leboff:flows:delete [-n <string>] [-p <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -185,7 +222,7 @@ EXAMPLE
   sfdx leboff:flows:delete --targetusername myOrg@example.com  --developername My_Flow
 ```
 
-_See code: [src/commands/leboff/flows/delete.ts](https://github.com/leboff/sfdx-leboff/blob/v1.6.0/src/commands/leboff/flows/delete.ts)_
+_See code: [src/commands/leboff/flows/delete.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/flows/delete.ts)_
 
 ## `sfdx leboff:folders:copysharing -s <string> -t <string> [-n <string>] [-e <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -228,7 +265,7 @@ EXAMPLE
   OtherDashboards
 ```
 
-_See code: [src/commands/leboff/folders/copysharing.ts](https://github.com/leboff/sfdx-leboff/blob/v1.6.0/src/commands/leboff/folders/copysharing.ts)_
+_See code: [src/commands/leboff/folders/copysharing.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/folders/copysharing.ts)_
 
 ## `sfdx leboff:reports:move -f <string> [-n <string>] [-c <string>] [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -269,7 +306,7 @@ EXAMPLES
   NewFolder
 ```
 
-_See code: [src/commands/leboff/reports/move.ts](https://github.com/leboff/sfdx-leboff/blob/v1.6.0/src/commands/leboff/reports/move.ts)_
+_See code: [src/commands/leboff/reports/move.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/reports/move.ts)_
 
 ## `sfdx leboff:settings:case:enableemailtocase [-v <string>] [-u <string>] [--apiversion <string>] [--json] [--loglevel trace|debug|info|warn|error|fatal|TRACE|DEBUG|INFO|WARN|ERROR|FATAL]`
 
@@ -299,5 +336,5 @@ EXAMPLE
   sfdx leboff:settings:case:enableemailtocase --targetusername myOrg@example.com
 ```
 
-_See code: [src/commands/leboff/settings/case/enableemailtocase.ts](https://github.com/leboff/sfdx-leboff/blob/v1.6.0/src/commands/leboff/settings/case/enableemailtocase.ts)_
+_See code: [src/commands/leboff/settings/case/enableemailtocase.ts](https://github.com/leboff/sfdx-leboff/blob/v1.7.0/src/commands/leboff/settings/case/enableemailtocase.ts)_
 <!-- commandsstop -->

@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/leboff/sfdx-leboff/compare/v1.6.0...v1.7.0) (2022-10-25)
+
+
+### Features
+
+* **customfields:** Add method for enabling field history ([749ba53](https://github.com/leboff/sfdx-leboff/commit/749ba532986ddd9fc57ad70dfb659acce42f99e4))
+
 # [1.6.0](https://github.com/leboff/sfdx-leboff/compare/v1.5.0...v1.6.0) (2022-05-26)
 
 
