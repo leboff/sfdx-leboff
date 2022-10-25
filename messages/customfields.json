@@ -1,0 +1,12 @@
+{
+  "customfields.fieldHistory.inprogress": "Enabling field history",
+  "customfields.fieldHistory.start": "Enabling field history for %s",
+  "customfields.fieldHistory.success": "Successfully enabled",
+  "customfields.fieldHistory.commandDescription": "Enable field history on custom field",
+  "customFieldsFlagDescription": "Comma separated list of custom fields to enable field history",
+  "enableFlagDescription": "Enable field history",
+  "customfields.fieldHistory.examples": [
+    "sfdx leboff:customfields:fieldHistory --field Account.Test__c --targetusername myOrg@example.com "
+  ],
+  "customfields.fieldHistory.error": "Failed to enable fieldhistory"
+}
