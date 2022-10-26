@@ -1,0 +1,13 @@
+{
+  "apinameFlagDescription": "The API name of the workflow to deactivate",
+  "namespaceprefixFlagDescription": "Use to specify a specific namespace prefix",
+  "workflowDeactivated": "already inactive.",
+  "errorWorkflowUpdate": "Unable to deactivate workflow %s.",
+  "errorWorkflowNotFound": "Could not find a definition for flow %s in the org.",
+  "deactivate.inprogress": "Deactivating workflow %s",
+  "deactivate.success": "Successfully deactivated",
+  "deactivate.commandDescription": "Deactivate a Workflow based on API Name",
+  "deactivate.examples": [
+    "sfdx leboff:workflows:deactivate --targetusername myOrg@example.com  --apiname \"Account.My Workflow\""
+  ]
+}
