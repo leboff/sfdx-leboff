@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/leboff/sfdx-leboff/compare/v1.7.0...v1.8.0) (2022-10-26)
+
+
+### Features
+
+* **workflows:** add function to deactivate workflows ([47fd07b](https://github.com/leboff/sfdx-leboff/commit/47fd07bec52244c3f54146776dc7601056da79a8))
+
 # [1.7.0](https://github.com/leboff/sfdx-leboff/compare/v1.6.0...v1.7.0) (2022-10-25)
 
 
