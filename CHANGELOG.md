@@ -1,3 +1,10 @@
+## [1.8.1](https://github.com/leboff/sfdx-leboff/compare/v1.8.0...v1.8.1) (2022-11-11)
+
+
+### Bug Fixes
+
+* **customfields:** use disable rather than enable for field history tracking ([b28160f](https://github.com/leboff/sfdx-leboff/commit/b28160f342dc7d19c253691389db3f874dd193f4))
+
 # [1.8.0](https://github.com/leboff/sfdx-leboff/compare/v1.7.0...v1.8.0) (2022-10-26)
 
 
