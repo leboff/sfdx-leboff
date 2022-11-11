@@ -29,11 +29,10 @@ export default class CustomFieldsFieldHistory extends SfdxCommand {
       description: messages.getMessage('customFieldsFlagDescription'),
       required: true,
     }),
-    enable: flags.boolean({
-      char: 'e',
-      description: messages.getMessage('enableFlagDescription'),
-      required: true,
-      default: true,
+    disable: flags.boolean({
+      char: 'd',
+      description: messages.getMessage('disableFlagDescription'),
+      default: false,
     }),
   };
 
@@ -48,9 +47,9 @@ export default class CustomFieldsFieldHistory extends SfdxCommand {
 
   public async run(): Promise<AnyJson> {
     const conn = this.org.getConnection();
-    const { customfields, enable } = this.flags as {
+    const { customfields, disable } = this.flags as {
       customfields: string;
-      enable: boolean;
+      disable: boolean;
     };
 
     const results = [];
@@ -62,7 +61,7 @@ export default class CustomFieldsFieldHistory extends SfdxCommand {
       this.ux.log(messages.getMessage('customfields.fieldHistory.start', [field.fullName]));
       try {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        field.trackHistory = enable.toString();
+        field.trackHistory = (!disable).toString();
         const result = await conn.metadata.update('CustomField', field);
         results.push(result);
       } catch (err) {
