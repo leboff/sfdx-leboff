@@ -8,7 +8,11 @@ import * as os from 'os';
 import { flags, SfdxCommand } from '@salesforce/command';
 import { Messages } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
+import { MetadataInfo, SaveError } from 'jsforce';
 
+interface CustomField extends MetadataInfo {
+  trackHistory: string;
+}
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
 
@@ -55,15 +59,33 @@ export default class CustomFieldsFieldHistory extends SfdxCommand {
     const results = [];
     const fieldsArray = customfields.split(',');
 
-    const fields = await conn.metadata.read('CustomField', fieldsArray);
-    for (const field of [].concat(fields)) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    const fields = (await conn.metadata.read('CustomField', fieldsArray)) as CustomField[];
+    for (const field of [].concat(fields) as CustomField[]) {
       this.ux.log(messages.getMessage('customfields.fieldHistory.start', [field.fullName]));
       try {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        field.trackHistory = (!disable).toString();
-        const result = await conn.metadata.update('CustomField', field);
-        results.push(result);
+        const track = (!disable).toString();
+
+        if (field.trackHistory !== track) {
+          field.trackHistory = track;
+          const result = await conn.metadata.update('CustomField', field);
+
+          if (!Array.isArray(result)) {
+            if (result.success) {
+              this.ux.log(
+                messages.getMessage('customfields.fieldHistory.success', [field.fullName])
+              );
+            } else {
+              for (const error of [].concat(result.errors) as SaveError[]) {
+                this.ux.log(
+                  messages.getMessage('customfields.fieldHistory.error', [error.message])
+                );
+              }
+            }
+          }
+          results.push(result);
+        } else {
+          this.ux.log(messages.getMessage('customfields.fieldHistory.noop', [field.fullName]));
+        }
       } catch (err) {
         this.ux.error(err);
       }

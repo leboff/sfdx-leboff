@@ -8,5 +8,6 @@
   "customfields.fieldHistory.examples": [
     "sfdx leboff:customfields:fieldHistory --field Account.Test__c --targetusername myOrg@example.com "
   ],
-  "customfields.fieldHistory.error": "Failed to enable fieldhistory"
+  "customfields.fieldHistory.error": "Failed to enable Field History: %s",
+  "customfields.fieldHistory.noop": "Field history already enabled for %s"
 }
