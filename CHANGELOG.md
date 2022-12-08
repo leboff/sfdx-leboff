@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/leboff/sfdx-leboff/compare/v1.8.1...v1.9.0) (2022-12-08)
+
+
+### Features
+
+* **fieldhistory:** make field history results clear ([b33379a](https://github.com/leboff/sfdx-leboff/commit/b33379af412e1604ca52b3c2aa2b026a330aaf26))
+
 ## [1.8.1](https://github.com/leboff/sfdx-leboff/compare/v1.8.0...v1.8.1) (2022-11-11)
 
 
