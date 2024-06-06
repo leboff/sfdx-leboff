@@ -50,27 +50,36 @@ export default class PicklistsAddValue extends SfdxCommand {
 
     const pickVal = {
       fullName: value,
-      default: isdefault,
       label: value,
       isActive: true,
+      default: !!isdefault,
     };
 
     this.ux.log(messages.getMessage('picklists.addvalue.inprogress', [value, field]));
     // retrieve picklist from Salesforce
-    const picklists = (await conn.metadata.read('CustomField', [field])) as CustomField[];
-    if (!picklists || picklists.length === 0) {
-      throw new SfdxError(`Field ${field} not found`);
+    const picklists = (await conn.metadata.read('CustomField', [field])) as
+      | CustomField[]
+      | CustomField;
+
+    let picklist: CustomField;
+    // set picklist to either first value if array or single value
+    if (!picklists || (Array.isArray(picklists) && picklists.length === 0)) {
+      throw new SfdxError(messages.getMessage('picklists.error.fieldNotFound', [field]));
     }
-    const picklist = picklists[0];
+    if (Array.isArray(picklists)) {
+      picklist = picklists[0];
+    } else {
+      picklist = picklists;
+    }
 
     if (picklist.valueSet && picklist.valueSet.valueSetDefinition) {
       const vals = picklist.valueSet.valueSetDefinition.value;
       if (vals.find((v) => v.fullName === pickVal.fullName)) {
-        throw new SfdxError(`Value ${pickVal.fullName} already exists`);
+        throw new SfdxError(messages.getMessage('picklists.error.valueExists', [value, field]));
       }
       vals.push(pickVal);
     } else {
-      throw new SfdxError(`Field ${field} is not a picklist`);
+      throw new SfdxError(messages.getMessage('picklists.error.notPicklist', [field]));
     }
 
     const result = await conn.metadata.update('CustomField', picklist);

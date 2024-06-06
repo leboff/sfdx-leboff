@@ -13,6 +13,8 @@
   "fieldFlagDescription": "The custom picklist field",  
   "valueFlagDescription": "The custom picklist value api name",
   "errorPicklistValuesNotFound": "Unable to find picklist value metadata in field %s.",
-  "errorValueNotFound": "Value %s not found in picklist %s."
+  "errorValueNotFound": "Value %s not found in picklist %s.",
+  "picklists.error.fieldNotFound": "Unable to find field %s.",
+  "picklists.error.notPicklist": "Field %s is not a picklist field.",
+  "picklists.error.valueExists": "Value %s already exists in picklist %s."
 }
-

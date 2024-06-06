@@ -58,7 +58,7 @@ describe('leboff:picklists:addvalue', () => {
       'NewValue',
     ])
     .it('throws an error if the field does not exist', (ctx) => {
-      expect(ctx.stderr).to.contain('Field NonExistentField not found');
+      expect(ctx.stderr).to.contain('Unable to find field NonExistentField');
     });
 
   picklistTest
@@ -84,7 +84,9 @@ describe('leboff:picklists:addvalue', () => {
       'ExistingValue',
     ])
     .it('throws an error if the value already exists in the picklist', (ctx) => {
-      expect(ctx.stderr).to.contain('Value ExistingValue already exists');
+      expect(ctx.stderr).to.contain(
+        'Value ExistingValue already exists in picklist ExistingField.'
+      );
     });
 
   picklistTest
