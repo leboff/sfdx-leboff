@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/leboff/sfdx-leboff/compare/v1.10.0...v1.11.0) (2024-06-06)
+
+
+### Features
+
+* **picklists:** added add value feature ([3def843](https://github.com/leboff/sfdx-leboff/commit/3def843d7a88ecd9c11b1a31eee836acd338566d))
+
 # [1.10.0](https://github.com/leboff/sfdx-leboff/compare/v1.9.0...v1.10.0) (2023-12-19)
 
 
