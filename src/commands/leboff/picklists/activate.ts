@@ -8,27 +8,8 @@ import * as os from 'os';
 import { flags, SfdxCommand } from '@salesforce/command';
 import { Messages, SfdxError } from '@salesforce/core';
 import { AnyJson } from '@salesforce/ts-types';
-import { MetadataInfo } from 'jsforce';
+import { CustomField } from '../../../util/types';
 
-interface Value {
-  fullName: string;
-  default: boolean;
-  label: string;
-  isActive: boolean;
-}
-
-interface ValueSetDefinition {
-  value: Value[];
-}
-
-interface ValueSet {
-  valueSetDefinition: ValueSetDefinition;
-}
-
-interface CustomField extends MetadataInfo {
-  trackHistory: string;
-  valueSet: ValueSet;
-}
 // Initialize Messages with the current plugin directory
 Messages.importMessagesDirectory(__dirname);
 
