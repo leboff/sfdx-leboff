@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/leboff/sfdx-leboff/compare/v1.11.0...v1.12.0) (2024-07-17)
+
+
+### Features
+
+* **picklists:** add deactivate value ([e5b2c8a](https://github.com/leboff/sfdx-leboff/commit/e5b2c8ad208edb890ddfe5deaf9a2da55699529e))
+
 # [1.11.0](https://github.com/leboff/sfdx-leboff/compare/v1.10.0...v1.11.0) (2024-06-06)
 
 
